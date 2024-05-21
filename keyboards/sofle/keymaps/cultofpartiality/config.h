@@ -16,9 +16,6 @@ for more options.
 
 #define TAPPING_TOGGLE 1
 
-// Due to homerow modes, combos work better here for Caps Word
-#undef BOTH_SHIFTS_TURNS_ON_CAPS_WORD
-
 // Testing space saving by limiting layers to 8, saves ~50 bytes?
 //#define LAYER_STATE_8BIT
 

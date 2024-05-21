@@ -25,7 +25,8 @@
 #define AUTO_SHIFT_NO_SETUP
 
 //Caps Word - Single word capslock.
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+//  Rather than use the inbuild "BOTH_SHIFTS_TURNS_ON_CAPS_WORD", use combos so the homerow
+//  mods work with it without false triggers
 #define CAPS_WORD_INVERT_ON_SHIFT
 
 //Combos
@@ -42,5 +43,10 @@
 //Increase time between register and unregister of automates taps
 #undef TAP_CODE_DELAY
 #define TAP_CODE_DELAY 5
+
+//Leader key functions
+#define LEADER_TIMEOUT 300      //Timeout in milliseconds to hit the sequence
+#define LEADER_PER_KEY_TIMING   //Each key in the sequence restarts the timer
+#define LEADER_NO_TIMEOUT       //After hitting the leader key, no timeout to start the sequence
 
 
