@@ -1,4 +1,15 @@
 {
     "userspace_version": "1.0",
-    "build_targets": []
+    "build_targets": [
+        ["planck/rev6", "cultofpartiality"],
+        ["planck/rev7", "cultofpartiality"],
+        ["zombie_planck/rev6_drop", "cultofpartiality"],
+        ["redox/wireless", "cultofpartiality"],
+        ["bored/rev2", "cultofpartiality"],
+        ["kprepublic/jj50", "cultofpartiality"],
+        ["preonic/rev3_drop", "cultofpartiality"],
+        ["pteron36", "cultofpartiality"],
+        ["pteron42", "cultofpartiality"],
+        ["jason_manuform/cmd5x6v1", "cultofpartiality"]
+    ]
 }
