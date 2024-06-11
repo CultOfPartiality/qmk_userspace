@@ -137,7 +137,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         //Homerow Shift - Take less than the tapping term to trigger the hold action
         case HM_F:
         case HM_J:
-            return TAPPING_TERM - 50;
+            return TAPPING_TERM - 40;
         default:
             return TAPPING_TERM;
     }
