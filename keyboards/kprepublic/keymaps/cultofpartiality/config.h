@@ -20,8 +20,6 @@
 #define NO_MUSIC_MODE
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
-
-
 #undef RGBLIGHT_EFFECT_BREATHING
 #undef RGBLIGHT_EFFECT_RAINBOW_MOOD
 #undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
@@ -35,3 +33,6 @@
 #undef RGBLIGHT_HUE_STEP
 #undef RGBLIGHT_SAT_STEP
 #undef RGBLIGHT_VAL_STEP
+
+// Sometimes getting double presses, but that might be the processor hanging?
+//#define DEBOUNCE
