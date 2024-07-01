@@ -96,6 +96,7 @@ enum global_keycodes {
 //Standard thumb keys
 #define NUM_SPC LT(_NUMBERS,KC_SPC)
 #define MOU_TAB LT(_MOUSE,  KC_TAB)
+#define MOU_ENT LT(_MOUSE,  KC_ENT)
 #define SYM_ESC LT(_SYMB,   KC_ESC)
 #define NAV_DEL LT(_NAV,    KC_DEL)
 #define NAV_ENT LT(_NAV,    KC_ENT)

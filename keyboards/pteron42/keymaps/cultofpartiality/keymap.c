@@ -13,7 +13,6 @@
 enum layers {
     _BUTTON = LAYERS_SAFE_RANGE_KB,
     _MOUSE,
-    _MEDIA,
 };
 // enum keycodes {
 //   A_TAB = SAFE_RANGE_KB,
@@ -30,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QK_GESC, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      /**/                   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
         KC_TAB,  HM_A,    HM_S,    HM_D,    HM_F,    KC_G,                      /**/                   KC_H,    HM_J,    HM_K,    HM_L,    HM_SCLN, HM_QUOT,
         KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      /**/                   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RCTL,
-                                            KC_1,    SYM_ESC, NUM_SPC, MOU_TAB, /**/ KC_BSPC, NAV_ENT, NAV_DEL, KC_2
+                                            KC_1,    SYM_ESC, NUM_SPC, MOU_ENT, /**/ KC_BSPC, NAV_ENT, NAV_DEL, KC_2
     ),
 
     [_NAV]    = LAYOUT_split_3x6_4_wrapper(
@@ -38,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______________NAV_LEFT_TOP________________,                  /**/                   _______________NAV_RIGHT_TOP_______________, _______,
         _______, _______________NAV_LEFT_MID________________,                  /**/                   _______________NAV_RIGHT_MID_______________, _______,
         _______, _______________NAV_LEFT_BOT________________,                  /**/                   _______________NAV_RIGHT_BOT_______________, _______,
-                                            _______, SYM_ESC, KC_SPC,  KC_TAB, /**/ U_NA,    U_NA,    U_NA,    _______
+                                            _______, SYM_ESC, KC_SPC,  KC_ENT, /**/ U_NA,    U_NA,    U_NA,    _______
     ),
 
     [_SYMB]    = LAYOUT_split_3x6_4_wrapper(
@@ -59,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_FUNC]    = LAYOUT_split_3x6_4(
     /*-------, -------, -------, -------, -------, -------, -------,/##/ -------, -------, -------, -------, -------, -------, -------,*/
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                    /**/                   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, _______,
+        QK_BOOT, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                    /**/                   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, _______,
         _______, U_NU,    SA_TAB,  U_NU,    A_TAB,   U_NU,                     /**/                   U_NU,    KC_PWIN, U_NU,    KC_NWIN, KC_F11, _______,
         _______, DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, U_NU,                     /**/                   U_NU,    U_NU,    U_NU,    U_NU,    KC_F12, _______,
                                              _______, U_NA,    U_NA,    U_NA,   /**/ U_NA,    U_NA,    U_NA, _______
@@ -71,14 +70,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_LCTL, KC_LGUI, KC_LALT, KC_LSFT, U_NU,                     /**/                   U_NU,    KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, _______,
         _______, U_NU,    KC_ALGR, U_NU,    U_NU,    U_NU,                     /**/                   U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    _______,
                                              _______, U_NA,    U_NA,    U_NA,   /**/ KC_BTN1, KC_BTN3, KC_BTN2, _______
-    ),
-
-    [_MEDIA]  = LAYOUT_split_3x6_4(
-    /*-------, -------, -------, -------, -------, -------, -------,/##/ -------, -------, -------, -------, -------, -------, -------,*/
-        _______, QK_BOOT, U_NU,    U_NU,    U_NU,    U_NU,                     /**/                   U_NU,    U_NU,    KC_VOLU, U_NU,    U_NU, _______,
-        _______, KC_LCTL, KC_LGUI, KC_LALT, KC_LSFT, U_NU,                     /**/                   U_NU,    KC_MPRV, KC_VOLD, KC_MNXT, U_NU, _______,
-        _______, U_NU,    KC_ALGR, U_NU,    U_NU,    U_NU,                     /**/                   U_NU,    U_NU,    U_NU,    U_NU,    U_NU, _______,
-                                             _______, U_NA,    U_NA,    U_NA,   /**/ KC_MSTP, KC_MPLY, KC_MUTE, _______
     ),
 
     //Why is this still here?
