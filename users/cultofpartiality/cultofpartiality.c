@@ -119,6 +119,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             case HM_L:
             case HM_K:
             case HM_J:
+            case NUM_SPC:
+            case NAV_ENT:
                 return 0;
         }
     }
@@ -158,6 +160,9 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
         case HM_QUOT:
             // Immediately select the hold action when another key is tapped.
             return true;
+        case NUM_SPC:
+           if( IS_NORMAL_MODE_ON() )    return true;
+           else                         return false;
         default:
             // Do the normal checks for tap/hold
             return false;
@@ -174,6 +179,9 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
         case KC_SYMB:
             // Immediately select the hold action when another key is pressed.
             return true;
+        case NUM_SPC:
+           if( IS_NORMAL_MODE_ON() )    return true;
+           else                         return false;
         default:
             // Do the normal checks for tap/hold
             return false;

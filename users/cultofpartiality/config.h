@@ -41,8 +41,9 @@
 #define TAPPING_TERM 170
 
 //Increase time between register and unregister of automates taps
+//Probably helps when using RDP
 #undef TAP_CODE_DELAY
-#define TAP_CODE_DELAY 5
+#define TAP_CODE_DELAY 20
 
 //Leader key functions
 #define LEADER_TIMEOUT 300      //Timeout in milliseconds to hit the sequence
