@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*-------, -------, -------, -------, -------, -------, -------,/##/ -------, -------, -------, -------, -------, -------, -------,*/
         QK_BOOT, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                    /**/                   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, _______,
         _______, U_NU,    SA_TAB,  U_NU,    A_TAB,   U_NU,                     /**/                   U_NU,    KC_PWIN, U_NU,    KC_NWIN, KC_F11, _______,
-        _______, DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, U_NU,                     /**/                   U_NU,    U_NU,    U_NU,    U_NU,    KC_F12, _______,
+        NM_OFF,  DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, U_NU,                     /**/                   U_NU,    U_NU,    U_NU,    U_NU,    KC_F12, _______,
                                              _______, U_NA,    U_NA,    U_NA,   /**/ U_NA,    U_NA,    U_NA, _______
     ),
 
