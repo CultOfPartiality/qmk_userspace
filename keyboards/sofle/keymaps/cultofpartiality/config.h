@@ -19,3 +19,6 @@ for more options.
 // Testing space saving by limiting layers to 8, saves ~50 bytes?
 //#define LAYER_STATE_8BIT
 
+#undef TRI_LAYER_LOWER_LAYER
+#undef TRI_LAYER_UPPER_LAYER
+#undef TRI_LAYER_ADJUST_LAYER
