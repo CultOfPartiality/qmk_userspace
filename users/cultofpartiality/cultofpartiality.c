@@ -139,7 +139,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         //Homerow Shift - Take less than the tapping term to trigger the hold action
         case HM_F:
         case HM_J:
-            return TAPPING_TERM - 40;
+            return TAPPING_TERM - 30; //-40 means missing some presses of 'F' on the redox...
         default:
             return TAPPING_TERM;
     }
@@ -154,12 +154,22 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
         case SYM_ESC:
         case KC_NAV:
         case KC_SYMB:
-        case HM_F:
-        case HM_J:
         case HM_SCLN:
         case HM_QUOT:
             // Immediately select the hold action when another key is tapped.
             return true;
+        case HM_F:
+            // Immediately select the hold action when another key is tapped, unless the other shift is already held
+            if(get_mods() & MOD_BIT(KC_RSFT))
+                return false;
+            else
+                return true;
+        case HM_J:
+            // Immediately select the hold action when another key is tapped, unless the other shift is already held
+            if(get_mods() & MOD_BIT(KC_LSFT))
+                return false;
+            else
+                return true;
         case NUM_SPC:
            if( IS_NORMAL_MODE_ON() )    return true;
            else                         return false;
