@@ -13,9 +13,15 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         //If caps word is enabled, we don't want to send the escape keystroke that turns it off
+        //We'll also use this to disable capslock, based on if the computer reports it's on
         case KC_ESC:
         case QK_GESC:
             if (is_caps_word_on()){
+                caps_word_off();
+                return false;
+            }
+            if (host_keyboard_led_state().caps_lock){
+                tap_code(KC_CAPS);
                 caps_word_off();
                 return false;
             }
@@ -136,10 +142,18 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case HM_S:
         case HM_L:
             return TAPPING_TERM + 40;
-        //Homerow Shift - Take less than the tapping term to trigger the hold action
+        //Homerow Shift - Take less than the tapping term to trigger the hold action (-40 might be too small)
+        //                However if the opposite shift key is activated, then take a bit longer to get the hold action
         case HM_F:
+            if(get_mods() & MOD_BIT(KC_RSFT))
+                return TAPPING_TERM + 20;
+            else
+                return TAPPING_TERM - 30;
         case HM_J:
-            return TAPPING_TERM - 30; //-40 means missing some presses of 'F' on the redox...
+            if(get_mods() & MOD_BIT(KC_LSFT))
+                return TAPPING_TERM + 20;
+            else
+                return TAPPING_TERM - 30;
         default:
             return TAPPING_TERM;
     }
@@ -244,6 +258,19 @@ bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
             return true;
     }
     return get_custom_auto_shifted_key(keycode, record);
+}
+
+////// Caps functionality
+// First trigger -> caps word
+// Second trigger -> caps lock
+// Pressing escape will cancel either (handled in "process_record_user")
+void trigger_caps_funcs(void){
+    if(!is_caps_word_on())
+        caps_word_on();
+    else{
+        caps_word_off();
+        tap_code(KC_CAPS);
+    }
 }
 
 ////// Normal Mode Activation Handler

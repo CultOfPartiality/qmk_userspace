@@ -191,7 +191,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case 0:
     case 1:
       if (pressed) {
-        caps_word_on();
+        trigger_caps_funcs();
       }
       break;
   }

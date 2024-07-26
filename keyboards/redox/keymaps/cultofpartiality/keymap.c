@@ -146,18 +146,13 @@ layer_state_t layer_state_set_keymap(layer_state_t state) {
     return state;
 }
 
-//Keyboard specific process record. Mostly moved to userspace
-// bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
-//     return true;
-// }
-
 //Housekeeping - Called at the end of a cycle. Update LEDs here
 void housekeeping_task_user(void){
     if(leader_sequence_active()){
         red_led_on;
         blu_led_on;
     }
-    else if(is_caps_word_on()){
+    else if(is_caps_word_on() || host_keyboard_led_state().caps_lock){
         red_led_on;
         grn_led_on;
         blu_led_on;
@@ -207,15 +202,8 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case 0:
     case 1:
       if (pressed)
-        caps_word_on();
+        trigger_caps_funcs();
       break;
   }
 }
 
-//Leader Keys - Mostly in userspace but can define keyboard specific actions here
-// void leader_start_keymap(void) {
-//     return;
-// }
-// void leader_end_keymap(void) {
-//     return;
-// }

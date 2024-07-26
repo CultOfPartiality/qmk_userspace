@@ -5,7 +5,7 @@
 \____/\____/_____/_/  \____/_/   /_/   /_/  |_/_/ |_| /_/ /___/_/  |_/_____/___/ /_/     /_/
 Userspace definition
 
-Note - Fun heading are the "STOP" font from https://ascii.today/
+Note - Fun heading are the "SMALL" font from https://ascii.today/
 */
 #pragma once
 #include "quantum.h"
@@ -33,6 +33,14 @@ have functionality that should overide this).                                   
 
 bool process_record_userspace(uint16_t keycode, keyrecord_t *record);
 layer_state_t layer_state_set_userspace(layer_state_t state);
+
+/* ___ _____ _  _ ___ ___   ___ _   _ _  _  ___ _____ ___ ___  _  _ ___
+  / _ \_   _| || | __| _ \ | __| | | | \| |/ __|_   _|_ _/ _ \| \| / __|
+ | (_) || | | __ | _||   / | _|| |_| | .` | (__  | |  | | (_) | .` \__ \
+  \___/ |_| |_||_|___|_|_\ |_|  \___/|_|\_|\___| |_| |___\___/|_|\_|___/
+Funciton prototypes as required for special funcitonality             */
+
+void trigger_caps_funcs(void);
 
 /*___ _____ _   _  _ ___   _   ___ ___    _      ___   _____ ___  ___
  / __|_   _/_\ | \| |   \ /_\ | _ \   \  | |    /_\ \ / / __| _ \/ __|
