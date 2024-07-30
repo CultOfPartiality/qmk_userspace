@@ -138,14 +138,14 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 +---------------------------------------------+        +----------------------------------------------+
 | !,       @,       #,       $,       %       |        | ^,       &,       *,       (,        )       |
 | 1,       2,       3,       4,       5       |        | 6,       7,       8,       9,        0       |
-| Ctrl-Z,  Ctrl-X,  Ctrl-C,  Ctrl-V,  Ctrl-Y  |        | XXXXXXX, XXXXXXX, Comma,   Period,   /       |
+| Ctrl-Z,  Ctrl-X,  Ctrl-C,  Ctrl-V,  Ctrl-Y  |        | +,       -,       Comma,   Period,   /       |
 +---------------------------------------------+        +----------------------------------------------+
 
  Symbol Layer?
 +---------------------------------------------+        +----------------------------------------------+
 | `,       ,        S-A Tab, Alt-Tab, XXXXXXX |        | =,       [,       ],       SPARE,   SPARE    |
 | Ctrl,    GUI,     Alt,     Shift,   PrntScn |        | -,       (,       ),       SPARE,   |        |
-| XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX |        | XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  |
+| XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX |        | +,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  |
 +---------------------------------------------+        +----------------------------------------------+
 */
 
@@ -209,7 +209,7 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 
 #define SYM_R0T KC_EQL
 #define SYM_R0M KC_MINS
-#define SYM_R0B XXXXXXX
+#define SYM_R0B KC_PLUS
 #define SYM_R1T KC_LBRC
 #define SYM_R1M KC_LPRN
 #define SYM_R1B XXXXXXX
@@ -251,10 +251,10 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 
 #define NUM_R0T KC_CIRC
 #define NUM_R0M KC_6
-#define NUM_R0B XXXXXXX
+#define NUM_R0B KC_PLUS
 #define NUM_R1T KC_AMPR
 #define NUM_R1M KC_7
-#define NUM_R1B XXXXXXX
+#define NUM_R1B KC_MINS
 #define NUM_R2T KC_ASTR
 #define NUM_R2M KC_8
 #define NUM_R2B KC_COMM
