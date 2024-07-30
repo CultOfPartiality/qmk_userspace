@@ -16,7 +16,7 @@ Note - Fun heading are the "SMALL" font from https://ascii.today/
   \___|____\___/|___/_/ \_\____| |___/ |_/_/ \_\_| |___|___/
 Global variables to add extra functionality     */
 
-//Normal moode -> No autoshift, homerow mods, space-key number layer, combos
+//Normal mode -> No autoshift, homerow mods, space-key number layer, combos
 extern bool gNornalModeActive;
 void activate_normal_mode(bool);
 #define ACTIVATE_NORMAL_MODE() activate_normal_mode(true)
