@@ -159,41 +159,51 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-/////// Per-key permissive hold for layer taps, so we can very quicky use arrows or hyphens
-// The layer numbers will need to match across all keyboards, so use the standardised layer names in the userspace
+/* For layer taps, so we can very quicky use arrows or hyphens, but allows for rolls when typing normally.
+
+Permissive hold is only for a tap (press and release) while the key in question is held down, but the timer for the hold
+action has not yet expired.
+
+From the doco:
+    The “permissive hold” mode, in addition to the default behavior, immediately selects the hold action when another key is tapped
+    (pressed and then released) while the dual-role key is held down, even if this happens earlier than the tapping term. If another
+    key is just pressed, but then the dual-role key is released before that other key (and earlier than the tapping term), this mode
+    will still select the tap action.
+*/
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case NAV_DEL:
-        case NAV_ENT:
-        case SYM_ESC:
-        case KC_NAV:
-        case KC_SYMB:
+        case NAV_DEL://Overrulled by get_hold_on_other_key_press
+        case NAV_ENT://Overrulled by get_hold_on_other_key_press
+        case SYM_ESC://Overrulled by get_hold_on_other_key_press
+        case KC_NAV: //Overrulled by get_hold_on_other_key_press
+        case KC_SYMB://Overrulled by get_hold_on_other_key_press
         case HM_SCLN:
         case HM_QUOT:
             // Immediately select the hold action when another key is tapped.
             return true;
         case HM_F:
             // Immediately select the hold action when another key is tapped, unless the other shift is already held
-            if(get_mods() & MOD_BIT(KC_RSFT))
-                return false;
-            else
-                return true;
+            if(get_mods() & MOD_BIT(KC_RSFT))   return false;
+            else                                return true;
         case HM_J:
             // Immediately select the hold action when another key is tapped, unless the other shift is already held
-            if(get_mods() & MOD_BIT(KC_LSFT))
-                return false;
-            else
-                return true;
+            if(get_mods() & MOD_BIT(KC_LSFT))   return false;
+            else                                return true;
         case NUM_SPC:
-           if( IS_NORMAL_MODE_ON() )    return true;
-           else                         return false;
+           if( IS_NORMAL_MODE_ON() )             return true;
+           else                                 return false;
         default:
             // Do the normal checks for tap/hold
             return false;
     }
 }
 
-//To avoid ever hitting escape unless we hit it by itself, always trigger the hold action if another key is pressed
+/* To avoid ever hitting escape unless we hit it by itself, always trigger the hold action if another key is pressed
+
+From the doco:
+    The “hold on other key press” mode, in addition to the default behavior, immediately selects the hold action when another key is
+    pressed while the dual-role key is held down, even if this happens earlier than the tapping term.
+*/
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case NAV_DEL:
