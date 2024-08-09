@@ -14,6 +14,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         //If caps word is enabled, we don't want to send the escape keystroke that turns it off
         //We'll also use this to disable capslock, based on if the computer reports it's on
+        case SYM_ESC://Fallthrough here is intentional, we want to exclude the held event
+            if ( ! (record->tap.count && record->event.pressed) ) { //(not the tap event)
+                return true;
+            }
         case KC_ESC:
         case QK_GESC:
             if (is_caps_word_on()){
