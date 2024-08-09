@@ -19,7 +19,7 @@
 #define QUICK_TAP_TERM_PER_KEY
 #define QUICK_TAP_TERM 50
 
-//Auto Shift
+//Auto Shift - Only used if autoshift is enabled on a keyboard
 #define NO_AUTO_SHIFT_ALPHA
 #define AUTO_SHIFT_TIMEOUT 170
 #define AUTO_SHIFT_NO_SETUP
