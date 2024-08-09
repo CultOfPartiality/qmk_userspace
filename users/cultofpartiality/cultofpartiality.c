@@ -251,6 +251,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 ////// Auto shift adjustment
 // Stop auto shifting in particular circumstances, such as if on number layer
 // This is an override of the default function from "/quantum/process_keycode/process_caps_word.c", will need to update this as QMK updates.
+#ifdef AUTO_SHIFT_ENABLE
 bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
 
     // Don't autoshift at all on the numbers layer
@@ -273,6 +274,7 @@ bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     }
     return get_custom_auto_shifted_key(keycode, record);
 }
+#endif
 
 ////// Caps functionality
 // First trigger -> caps word
@@ -284,6 +286,26 @@ void trigger_caps_funcs(void){
     else{
         caps_word_off();
         tap_code(KC_CAPS);
+    }
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+        case KC_MINS:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
     }
 }
 
