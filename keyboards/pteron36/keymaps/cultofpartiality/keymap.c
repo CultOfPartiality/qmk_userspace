@@ -41,11 +41,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                           SYM_ESC, KC_SPC,  KC_TAB, /**/ U_NA,    U_NA,    U_NA
     ),
 
-    [_SYMB]    = LAYOUT_split_3x5_3(
+    [_SYMB]    = LAYOUT_split_3x5_3_wrapper(
     /*-------, -------, -------, -------, -------, -------, -------,/##/ -------, -------, -------, -------, -------, -------, -------,*/
-        KC_GRV,  KC_AMPR, SA_TAB,  A_TAB,   KC_RCBR,                  /**/                   KC_EQL,  KC_LBRC, KC_RBRC, KC_COLN, KC_BSLS,
-        KC_LCTL, KC_LGUI, KC_LALT, KC_LSFT, KC_PSCR,                  /**/                   KC_MINS, KC_LPRN, KC_RPRN, KC_SCLN, KC_PIPE,
-        KM_UNDO, KM_CUT,  KM_COPY, KM_PAST, KC_REDO,                  /**/                   U_NU,    KC_AMPR, KC_ASTR, U_NU,    U_NU,
+        _______________SYM_LEFT_TOP________________,                  /**/                   _______________SYM_RIGHT_TOP_______________,
+        _______________SYM_LEFT_MID________________,                  /**/                   _______________SYM_RIGHT_MID_______________,
+        _______________SYM_LEFT_BOT________________,                  /**/                   _______________SYM_RIGHT_BOT_______________,
                                             U_NA,    U_NA,    U_NA,   /**/ KC_BSPC, KC_ENT,  NAV_DEL
     ),
 
@@ -104,22 +104,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //Combos - Press multiple keys together as a chord to trigger something else
 //  - Caps Word:    Homerow Shifts = Trigger Caps Word
 //  - Homerow Tab:
-
-const uint16_t PROGMEM combo_homerowShiftsCapsWord[] = {HM_F, HM_J, COMBO_END};
-const uint16_t PROGMEM combo_leaderKey2[] = {HM_S, HM_D, COMBO_END};
-const uint16_t PROGMEM combo_homerowTab[] = {HM_A, HM_S, COMBO_END};
-combo_t key_combos[] = {
-    COMBO_ACTION(combo_homerowShiftsCapsWord),
-    COMBO(combo_leaderKey2,QK_LEAD),
-    COMBO(combo_homerowTab,KC_TAB),
-
-};
-
-void process_combo_event(uint16_t combo_index, bool pressed) {
-  switch(combo_index) {
-    case 0:
-      if (pressed)
-        trigger_caps_funcs();
-      break;
-  }
-}

@@ -92,25 +92,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     return true;
 // }
 
-//Combos - Press multiple keys together as a chord to trigger something else
-//  - Caps Word:    Homerow Shifts = Trigger Caps Word
-//  - Homerow Tab:
-
-const uint16_t PROGMEM combo_homerowShiftsCapsWord[] = {HM_F, HM_J, COMBO_END};
-const uint16_t PROGMEM combo_leaderKey2[] = {HM_S, HM_D, COMBO_END};
-const uint16_t PROGMEM combo_homerowTab[] = {HM_A, HM_S, COMBO_END};
-combo_t key_combos[] = {
-    COMBO_ACTION(combo_homerowShiftsCapsWord),
-    COMBO(combo_leaderKey2,QK_LEAD),
-    COMBO(combo_homerowTab,KC_TAB),
-
-};
-
-void process_combo_event(uint16_t combo_index, bool pressed) {
-  switch(combo_index) {
-    case 0:
-      if (pressed)
-        trigger_caps_funcs();
-      break;
-  }
-}
+//Combos - Moved to userspace

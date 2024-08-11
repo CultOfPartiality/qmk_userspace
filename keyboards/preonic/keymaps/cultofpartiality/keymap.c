@@ -34,13 +34,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_ortho_5x12(
     QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    /**/ KC_6,    KC_7,     KC_8,     KC_9,    KC_0,    KC_BSPC,
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    /**/ KC_Y,    KC_U,     KC_I,     KC_O,    KC_P,    KC_DEL,
-    KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    /**/ KC_H,    KC_J,     KC_K,     KC_L,    KC_SCLN, KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    /**/ KC_N,    KC_M,     KC_COMM,  KC_DOT,  KC_SLSH, KC_RSFT,
-    KC_LCTL, KC_LGUI, KC_LALT, KC_SYMB, KC_SYMB, NUM_SPC, /**/ KC_ENT,  KC_NAV,   KM_CSHT,  KC_RALT, KC_RGUI, KC_RCTL
-    ),
-    [_MOD] = LAYOUT_ortho_5x12(
-    QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    /**/ KC_6,    KC_7,     KC_8,     KC_9,    KC_0,    KC_BSPC,
-    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    /**/ KC_Y,    KC_U,     KC_I,     KC_O,    KC_P,    KC_DEL,
     KC_TAB,  HM_A,    HM_S,    HM_D,    HM_F,    KC_G,    /**/ KC_H,    HM_J,     HM_K,     HM_L,    HM_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    /**/ KC_N,    KC_M,     KC_COMM,  KC_DOT,  KC_SLSH, KC_RSFT,
     KC_LCTL, KC_LGUI, KC_LALT, KC_SYMB, KC_SYMB, NUM_SPC, /**/ KC_ENT,  KC_NAV,   KM_CSHT,  KC_RALT, KC_RGUI, KC_RCTL
@@ -145,32 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // }
 
 //Combos
-// Currently defined:
-//  - Caps Word:     Homerow Shifts = Trigger Caps Word
-//                   Both Normal Shifts = Trigger Caps Word
-//  - Leader Key:    S + D? Not sure on this combo
-
-const uint16_t PROGMEM combo_homerowShiftsCapsWord[] = {HM_F, HM_J, COMBO_END};
-const uint16_t PROGMEM combo_bothShiftsCapsWord[] = {KC_LSFT, KC_RSFT, COMBO_END};
-const uint16_t PROGMEM combo_leaderKey1[] = {KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM combo_leaderKey2[] = {HM_S, HM_D, COMBO_END};
-combo_t key_combos[] = {
-    COMBO_ACTION(combo_homerowShiftsCapsWord),
-    COMBO_ACTION(combo_bothShiftsCapsWord),
-    COMBO(combo_leaderKey1,QK_LEAD),
-    COMBO(combo_leaderKey2,QK_LEAD),
-};
-
-void process_combo_event(uint16_t combo_index, bool pressed) {
-    switch(combo_index) {
-        case 0:
-        case 1:
-            if (pressed) {
-                trigger_caps_funcs();
-            }
-            break;
-    }
-}
+// Moved to userspace
 
 //Leader Keys - Mostly in userspace but can define keyboard specific actions here
 // void leader_start_keymap(void) {

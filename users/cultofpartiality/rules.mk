@@ -20,7 +20,9 @@ ifeq ($(strip $(LEADER_ENABLE)), yes)
 endif
 
 #Create a #define for combos, if keyboard has it enabled in its rules
+#See "https://github.com/qmk/qmk_firmware/issues/21137" for info around needed this directive
 ifeq ($(strip $(COMBO_ENABLE)), yes)
     OPT_DEFS += -DCOMBO_ENABLE
+	INTROSPECTION_KEYMAP_C = combos.c
 endif
 

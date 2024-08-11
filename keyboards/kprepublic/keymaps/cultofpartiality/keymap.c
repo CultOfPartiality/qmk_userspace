@@ -174,31 +174,4 @@ void caps_word_set_user(bool active) {
 }
 
 //Combos - Press multiple keys together as a chord to trigger something else
-//
-// Currently defined:
-//  - Caps Word:     Homerow Shifts = Trigger Caps Word
-//                   Both Normal Shifts = Trigger Caps Word
-//  - Planck Delete: P + Backspace = Delete
-//  - Leader Key:    S + D? Not sure on this combo
-
-const uint16_t PROGMEM combo_homerowShiftsCapsWord[] = {HM_F, HM_J, COMBO_END};
-const uint16_t PROGMEM combo_bothShiftsCapsWord[] = {KC_LSFT, KC_RSFT, COMBO_END};
-const uint16_t PROGMEM combo_leaderKey1[] = {KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM combo_leaderKey2[] = {HM_S, HM_D, COMBO_END};
-combo_t key_combos[] = {
-    COMBO_ACTION(combo_homerowShiftsCapsWord),
-    COMBO_ACTION(combo_bothShiftsCapsWord),
-    COMBO(combo_leaderKey1,QK_LEAD),
-    COMBO(combo_leaderKey2,QK_LEAD),
-};
-
-void process_combo_event(uint16_t combo_index, bool pressed) {
-  switch(combo_index) {
-    case 0:
-    case 1:
-      if (pressed) {
-        trigger_caps_funcs();
-      }
-      break;
-  }
-}
+// Moved to userspace
