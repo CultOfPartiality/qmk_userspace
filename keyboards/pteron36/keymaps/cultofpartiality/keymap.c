@@ -43,9 +43,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_SYMB]    = LAYOUT_split_3x5_3_wrapper(
     /*-------, -------, -------, -------, -------, -------, -------,/##/ -------, -------, -------, -------, -------, -------, -------,*/
-        _______________SYM_LEFT_TOP________________,                  /**/                   _______________SYM_RIGHT_TOP_______________,
-        _______________SYM_LEFT_MID________________,                  /**/                   _______________SYM_RIGHT_MID_______________,
-        _______________SYM_LEFT_BOT________________,                  /**/                   _______________SYM_RIGHT_BOT_______________,
+        _______________SYM_LEFT_TOP________________,                  /**/                   KC_EQL,  KC_LBRC, KC_RBRC, KC_COLN, KC_BSLS,
+        _______________SYM_LEFT_MID________________,                  /**/                   KC_MINS, KC_LPRN, KC_RPRN, KC_SCLN, KC_PIPE,
+        _______________SYM_LEFT_BOT________________,                  /**/                   U_NU,    KC_AMPR, KC_ASTR, U_NU,    U_NU,
                                             U_NA,    U_NA,    U_NA,   /**/ KC_BSPC, KC_ENT,  NAV_DEL
     ),
 
