@@ -10,12 +10,25 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+////// Global alpha tap timer
+static uint16_t alpha_tap_timer = 0;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
+    switch (keycode){
+        //Keep a timer of the last time an alpha numberic key was hit that isn't "j" or "f".
+        //We'll try and use this time to allow for rolling the shift homerow mods, if possible
+        // (if this doesn't work, might have to try autocorrect)
+        case KC_A ... KC_Z:
+            alpha_tap_timer = timer_read();
+    }
+
     switch (keycode) {
         //If caps word is enabled, we don't want to send the escape keystroke that turns it off
         //We'll also use this to disable capslock, based on if the computer reports it's on
         case SYM_ESC://Fallthrough here is intentional, we want to exclude the held event
-            if ( ! (record->tap.count && record->event.pressed) ) { //(not the tap event)
+            //(not the tap event)
+            if ( ! (record->tap.count && record->event.pressed) ) {
                 return true;
             }
         case KC_ESC:
@@ -210,6 +223,15 @@ From the doco:
 */
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+
+        //If we haven't typed an alpha for a while, then let a roll trigger the homerow mod shifts
+        case HM_F:
+        case HM_J:
+            if(timer_elapsed(alpha_tap_timer) > HOMEROW_SHIFT_TRIGGER_ON_ROLLS_DELAY)
+                return  true;
+            else
+                return false;
+
         case NAV_DEL:
         case NAV_ENT:
         case SYM_ESC:

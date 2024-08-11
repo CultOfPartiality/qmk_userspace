@@ -18,6 +18,8 @@
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 #define QUICK_TAP_TERM_PER_KEY
 #define QUICK_TAP_TERM 50
+//custom: delay after not pressing another alpha key, where a roll from (e.g.) "j" to "w" will trigger a "W" instead of "jw"
+#define HOMEROW_SHIFT_TRIGGER_ON_ROLLS_DELAY 600
 
 //Auto Shift - Only used if autoshift is enabled on a keyboard
 #define NO_AUTO_SHIFT_ALPHA
