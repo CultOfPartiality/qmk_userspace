@@ -1,26 +1,35 @@
 #include "cultofpartiality.h"
 
-////// Global state
+////// Global vars
+//Keep track of normal mode status
 bool gNornalModeActive = false;
+//Keep track of time since last tap of an alpha, space, ., and others in future
+static uint16_t gAlphaAndExtrasTap_tmr = 0;
+//Keep track of last 2 keys pressed
+static uint16_t gLastKeysTapped_Buf[2];
 
-////// Global process record user
-
+////// Process record user
 __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-////// Global alpha tap timer
-static uint16_t alpha_tap_timer = 0;
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
-    switch (keycode){
-        //Keep a timer of the last time an alpha numberic key was hit that isn't "j" or "f".
-        //We'll try and use this time to allow for rolling the shift homerow mods, if possible
-        // (if this doesn't work, might have to try autocorrect)
+    //Keep a timer of the last time an alpha numberic key was hit that isn't "j" or "f".
+    //We'll try and use this time to allow for rolling the shift homerow mods, if possible
+    // (if this doesn't work, might have to try autocorrect)
+    switch (keycode & 0xFF){
         case KC_A ... KC_Z:
-            alpha_tap_timer = timer_read();
+        case KC_SPC:
+        case KC_DOT:
+            gAlphaAndExtrasTap_tmr = timer_read();
+    }
+
+    //Keep track of the last few keys that have been tapped
+    if(record->event.pressed){
+        gLastKeysTapped_Buf[1] = gLastKeysTapped_Buf[0];
+        gLastKeysTapped_Buf[0] = keycode & 0xFF;
     }
 
     switch (keycode) {
@@ -176,6 +185,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+
+////// Tap vs Hold consideratons
+#define IMMEDIATELY_HOLD true
+#define CONTINUE_NORMAL_CHECKS false
+
+
 /* For layer taps, so we can very quicky use arrows or hyphens, but allows for rolls when typing normally.
 
 Permissive hold is only for a tap (press and release) while the key in question is held down, but the timer for the hold
@@ -196,22 +211,20 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
         case KC_SYMB://Overrulled by get_hold_on_other_key_press
         case HM_SCLN:
         case HM_QUOT:
-            // Immediately select the hold action when another key is tapped.
-            return true;
+            return IMMEDIATELY_HOLD;
         case HM_F:
             // Immediately select the hold action when another key is tapped, unless the other shift is already held
-            if(get_mods() & MOD_BIT(KC_RSFT))   return false;
-            else                                return true;
+            if(get_mods() & MOD_BIT(KC_RSFT))   return CONTINUE_NORMAL_CHECKS;
+            else                                return IMMEDIATELY_HOLD;
         case HM_J:
             // Immediately select the hold action when another key is tapped, unless the other shift is already held
-            if(get_mods() & MOD_BIT(KC_LSFT))   return false;
-            else                                return true;
+            if(get_mods() & MOD_BIT(KC_LSFT))   return CONTINUE_NORMAL_CHECKS;
+            else                                return IMMEDIATELY_HOLD;
         case NUM_SPC:
-           if( IS_NORMAL_MODE_ON() )             return true;
-           else                                 return false;
+           if( IS_NORMAL_MODE_ON() )             return IMMEDIATELY_HOLD;
+           else                                 return CONTINUE_NORMAL_CHECKS;
         default:
-            // Do the normal checks for tap/hold
-            return false;
+            return CONTINUE_NORMAL_CHECKS;
     }
 }
 
@@ -221,30 +234,33 @@ From the doco:
     The “hold on other key press” mode, in addition to the default behavior, immediately selects the hold action when another key is
     pressed while the dual-role key is held down, even if this happens earlier than the tapping term.
 */
+
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 
-        //If we haven't typed an alpha for a while, then let a roll trigger the homerow mod shifts
+        //If we just typed " ." then let a roll trigger the homerow mod shifts
         case HM_F:
         case HM_J:
-            if(timer_elapsed(alpha_tap_timer) > HOMEROW_SHIFT_TRIGGER_ON_ROLLS_DELAY)
-                return  true;
+            if(
+                //This is checking for ". ", "? ", and "! ", but probably need to better distinguish the keycodes...
+                ( gLastKeysTapped_Buf[1] == KC_DOT || gLastKeysTapped_Buf[1] == KC_SLSH || gLastKeysTapped_Buf[1] == KC_1) &&
+                ( gLastKeysTapped_Buf[0] == KC_SPC || gLastKeysTapped_Buf[0] == KC_ENT ) &&
+                ( timer_elapsed(gAlphaAndExtrasTap_tmr) < HOMEROW_SHIFT_TRIGGER_ON_ROLLS_WINDOW )
+            )
+                return  IMMEDIATELY_HOLD;
             else
-                return false;
-
+                return CONTINUE_NORMAL_CHECKS;
         case NAV_DEL:
         case NAV_ENT:
         case SYM_ESC:
         case KC_NAV:
         case KC_SYMB:
-            // Immediately select the hold action when another key is pressed.
-            return true;
+            return IMMEDIATELY_HOLD;
         case NUM_SPC:
-           if( IS_NORMAL_MODE_ON() )    return true;
-           else                         return false;
+           if( IS_NORMAL_MODE_ON() )    return IMMEDIATELY_HOLD;
+           else                         return CONTINUE_NORMAL_CHECKS;
         default:
-            // Do the normal checks for tap/hold
-            return false;
+            return CONTINUE_NORMAL_CHECKS;
     }
 }
 
