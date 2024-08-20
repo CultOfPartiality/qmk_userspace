@@ -23,6 +23,9 @@ void activate_normal_mode(bool);
 #define DEACTIVATE_NORMAL_MODE() activate_normal_mode(false)
 #define IS_NORMAL_MODE_ON() gNornalModeActive
 
+//Keep track of if a dynamic macro is being recorded
+extern bool gMacroRecordingActive;
+
 /*_   _ ___ ___ ___  ___ ___  _   ___ ___   ___ _   _ _  _  ___ _____ ___ ___  _  _ ___
  | | | / __| __| _ \/ __| _ \/_\ / __| __| | __| | | | \| |/ __|_   _|_ _/ _ \| \| / __|
  | |_| \__ \ _||   /\__ \  _/ _ \ (__| _|  | _|| |_| | .` | (__  | |  | | (_) | .` \__ \
@@ -111,7 +114,11 @@ enum global_keycodes {
 
 //Other layer keys
 #define KC_SYMB MO(_SYMB)
-#define KC_NAV MO(_NAV)
+#define KC_NAV  MO(_NAV)
+
+//Other tap/hold keys
+#define DY_MC1 LT(0,DM_PLY1)
+#define DY_MC2 LT(0,DM_PLY2)
 
 /*___ _____ _   _  _ ___   _   ___ ___    _      ___   _____  _   _ _____ ___
  / __|_   _/_\ | \| |   \ /_\ | _ \   \  | |    /_\ \ / / _ \| | | |_   _/ __|

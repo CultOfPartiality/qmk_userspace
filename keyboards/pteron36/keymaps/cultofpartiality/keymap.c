@@ -58,10 +58,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FUNC]    = LAYOUT_split_3x5_3(
-    /*-------, -------, -------, -------, -------, -------, -------,/##/ -------, -------, -------, -------, -------, -------, -------,*/
+      /*-------, -------, -------, -------, -------, -------, -------,/##/ -------, -------, -------, -------, -------, -------, -------,*/
         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                    /**/                   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,
         U_NU,    SA_TAB,  U_NU,    A_TAB,   U_NU,                     /**/                   U_NU,    KC_PWIN, U_NU,    KC_NWIN, KC_F11,
-        DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, U_NU,                     /**/                   U_NU,    U_NU,    U_NU,    U_NU,    KC_F12,
+        NM_OFF,  U_NU,    U_NU,    DY_MC1,  DY_MC2,                   /**/                   U_NU,    U_NU,    U_NU,    U_NU,    KC_F12,
                                             U_NA,    U_NA,    U_NA,   /**/ U_NA,    U_NA,    U_NA
     ),
 

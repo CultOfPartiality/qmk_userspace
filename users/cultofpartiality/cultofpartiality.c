@@ -1,14 +1,23 @@
 #include "cultofpartiality.h"
 
-////// Global vars
-//Keep track of normal mode status
+// Global Vars
+// -----------
+// Keep track of normal mode status
 bool gNornalModeActive = false;
-//Keep track of time since last tap of an alpha, space, ., and others in future
+// Keep track of macro recording
+bool gMacroRecordingActive = false;
+// Keep track of time since last tap of an alpha, space, ., and others in future
 static uint16_t gAlphaAndExtrasTap_tmr = 0;
-//Keep track of last 2 keys pressed
+// Keep track of last 2 keys pressed
 static uint16_t gLastKeysTapped_Buf[2];
 
 ////// Process record user
+
+#define MOD_TAP_TAPPED record->tap.count && record->event.pressed
+#define MOD_TAP_HELD !record->tap.count && record->event.pressed
+#define DYNAMIC_MACRO_1 1
+#define DYNAMIC_MACRO_2 -1
+
 __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
     return true;
@@ -36,8 +45,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         //If caps word is enabled, we don't want to send the escape keystroke that turns it off
         //We'll also use this to disable capslock, based on if the computer reports it's on
         case SYM_ESC://Fallthrough here is intentional, we want to exclude the held event
-            //(not the tap event)
-            if ( ! (record->tap.count && record->event.pressed) ) {
+            if ( MOD_TAP_HELD ) {
                 return true;
             }
         case KC_ESC:
@@ -53,15 +61,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return true;
 
-        // Register alt, tap Tab, unregister alt when SYMB layer turns off
+        // Special Alt-Tab functions using symbol layer
+        //      A_Tab   - Register alt, tap Tab, unregister alt when SYMB layer turns off
+        //      SA_TAB  - Register alt, tap Shift-Tab, unregister alt when SYMB layer turns off
         case A_TAB:
             if (record->event.pressed) {
                 register_code(KC_LALT);
                 tap_code(KC_TAB);
             }
             return false;
-
-        // Register alt, tap Shift-Tab, unregister alt when SYMB layer turns off
         case SA_TAB:
             if (record->event.pressed) {
                 register_code(KC_LALT);
@@ -69,7 +77,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-        //Turn on/off normal mode
+        // Dynamic Macros - Multifunction keys
+        //   Holding starts recording a macro, tapping or holding end it
+        //   Then tapping will play the macro
+        // Macro ID is from the "process_dynamic_macro.c", and indicates which macro is being recorded (1=Macro 1, -1=Macro 2)
+        case DY_MC1:
+        case DY_MC2:
+            if(MOD_TAP_TAPPED){
+                if(gMacroRecordingActive)
+                    dynamic_macro_stop_recording();
+                else
+                    dynamic_macro_record_play_command( (keycode == DY_MC1) ? DYNAMIC_MACRO_1 : DYNAMIC_MACRO_2 );
+            }
+            else if(MOD_TAP_HELD){
+                if(gMacroRecordingActive)
+                    dynamic_macro_stop_recording();
+                else
+                    dynamic_macro_record_start_command( (keycode == DY_MC1) ? DYNAMIC_MACRO_1 : DYNAMIC_MACRO_2 );
+            }
+            return false;
+
+        // Keys for turnning normal mode on and off
         case NM_ON:
             if (record->event.pressed) {
                 ACTIVATE_NORMAL_MODE();
@@ -364,6 +392,16 @@ void activate_normal_mode(bool activate){
         #endif
     }
 }
+
+
+// Keep track of dynamic macros
+void dynamic_macro_record_start_user(int8_t direction){
+    gMacroRecordingActive = true;
+}
+void dynamic_macro_record_end_user(int8_t direction){
+    gMacroRecordingActive = false;
+}
+
 
  /*----------------------------------------------------------------*\
  |      Leader Keys - Type a sequence to trigger an action          |
