@@ -45,7 +45,7 @@
 //Increase time between register and unregister of automates taps
 //Probably helps when using RDP
 #undef TAP_CODE_DELAY
-#define TAP_CODE_DELAY 20
+#define TAP_CODE_DELAY 30
 
 //Leader key functions
 #define LEADER_TIMEOUT 300      //Timeout in milliseconds to hit the sequence
@@ -53,3 +53,5 @@
 #define LEADER_NO_TIMEOUT       //After hitting the leader key, no timeout to start the sequence
 
 
+//Dynamic Macros
+#define DYNAMIC_MACRO_DELAY 80  //Delay between each keystroke
