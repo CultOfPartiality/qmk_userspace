@@ -54,4 +54,4 @@
 
 
 //Dynamic Macros
-#define DYNAMIC_MACRO_DELAY 12  //Delay between each keystroke
+#define DYNAMIC_MACRO_DELAY 10  //Delay between each keystroke
