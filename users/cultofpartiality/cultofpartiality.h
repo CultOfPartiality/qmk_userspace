@@ -150,7 +150,7 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 
  Symbol Layer?
 +---------------------------------------------+        +----------------------------------------------+
-| `,       ,        S-A Tab, Alt-Tab, XXXXXXX |        | =,       [,       ],       SPARE,   SPARE    |
+| `,       ~,       S-A Tab, Alt-Tab, XXXXXXX |        | =,       [,       ],       SPARE,   SPARE    |
 | Ctrl,    GUI,     Alt,     Shift,   PrntScn |        | -,       (,       ),       SPARE,   |        |
 | XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX |        | +,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  |
 +---------------------------------------------+        +----------------------------------------------+
@@ -201,7 +201,7 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 #define SYM_L4T KC_GRV
 #define SYM_L4M KC_LCTL
 #define SYM_L4B XXXXXXX
-#define SYM_L3T XXXXXXX
+#define SYM_L3T KC_TILD
 #define SYM_L3M KC_LGUI
 #define SYM_L3B XXXXXXX
 #define SYM_L2T SA_TAB
