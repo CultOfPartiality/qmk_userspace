@@ -44,7 +44,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         //If caps word is enabled, we don't want to send the escape keystroke that turns it off
         //We'll also use this to disable capslock, based on if the computer reports it's on
-        case SYM_ESC://Fallthrough here is intentional, we want to exclude the held event
+        case SYM_ESC://Fallthrough here is intentional, we want to exclude the held event.
+            if ( ! record->event.pressed ) {  //If released, handle normally (to let us get out of symbols)
+                return true;
+            }
             if ( MOD_TAP_HELD ) {
                 return true;
             }
@@ -55,8 +58,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             if (host_keyboard_led_state().caps_lock){
-                tap_code(KC_CAPS);
                 caps_word_off();
+                tap_code(KC_CAPS);
                 return false;
             }
             return true;
