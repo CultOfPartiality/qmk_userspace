@@ -327,15 +327,15 @@ bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     if (IS_NORMAL_MODE_ON()) return false;
 
     switch (keycode) {
-#    ifndef NO_AUTO_SHIFT_ALPHA
+    #ifndef NO_AUTO_SHIFT_ALPHA
         case AUTO_SHIFT_ALPHA:
-#    endif
-#    ifndef NO_AUTO_SHIFT_NUMERIC
+    #endif
+    #ifndef NO_AUTO_SHIFT_NUMERIC
         case AUTO_SHIFT_NUMERIC:
-#    endif
-#    ifndef NO_AUTO_SHIFT_SPECIAL
+    #endif
+    #ifndef NO_AUTO_SHIFT_SPECIAL
         case AUTO_SHIFT_SPECIAL:
-#    endif
+    #endif
             return true;
     }
     return get_custom_auto_shifted_key(keycode, record);
