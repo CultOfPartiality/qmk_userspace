@@ -152,7 +152,7 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 +---------------------------------------------+        +----------------------------------------------+
 | `,       ~,       S-A Tab, Alt-Tab, XXXXXXX |        | =,       [,       ],       SPARE,   SPARE    |
 | Ctrl,    GUI,     Alt,     Shift,   PrntScn |        | -,       (,       ),       SPARE,   |        |
-| XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX |        | +,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  |
+| XXXXXXX, XXXXXXX, XXXXXXX, DY_MC1,  DY_MC2  |        | +,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  |
 +---------------------------------------------+        +----------------------------------------------+
 */
 
@@ -206,13 +206,13 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 #define SYM_L3B XXXXXXX
 #define SYM_L2T SA_TAB
 #define SYM_L2M KC_LALT
-#define SYM_L2B DM_PLY1
+#define SYM_L2B XXXXXXX
 #define SYM_L1T A_TAB
 #define SYM_L1M KC_LSFT
-#define SYM_L1B DM_PLY2
+#define SYM_L1B DY_MC1
 #define SYM_L0T XXXXXXX
 #define SYM_L0M KC_PSCR
-#define SYM_L0B XXXXXXX
+#define SYM_L0B DY_MC2
 
 #define SYM_R0T KC_EQL
 #define SYM_R0M KC_MINS
