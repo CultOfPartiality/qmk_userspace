@@ -112,6 +112,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         // Treat this only as a space key if in normal mode
         case NUM_SPC:
+        case NAV_SPC:
             if( IS_NORMAL_MODE_ON() ) {
                 if(record->event.pressed) register_code(KC_SPC);
                 else                      unregister_code(KC_SPC);
@@ -182,6 +183,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             case HM_J:
             case NUM_SPC:
             case NAV_ENT:
+            case NAV_SPC:
                 return 0;
         }
     }
@@ -250,6 +252,7 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
             if(get_mods() & MOD_BIT(KC_LSFT))   return CONTINUE_NORMAL_CHECKS;
             else                                return IMMEDIATELY_HOLD;
         case NUM_SPC:
+        case NAV_SPC:
            if( IS_NORMAL_MODE_ON() )             return IMMEDIATELY_HOLD;
            else                                 return CONTINUE_NORMAL_CHECKS;
         default:
@@ -286,6 +289,7 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
         case KC_SYMB:
             return IMMEDIATELY_HOLD;
         case NUM_SPC:
+        case NAV_SPC:
            if( IS_NORMAL_MODE_ON() )    return IMMEDIATELY_HOLD;
            else                         return CONTINUE_NORMAL_CHECKS;
         default:
@@ -308,6 +312,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
         case HM_L:
         case HM_K:
         case HM_J:
+        case NAV_SPC:
         case NUM_SPC: //To be able to quickly add a space and then type a number? Can't double tap space though....
             return QUICK_TAP_TERM;
         default:

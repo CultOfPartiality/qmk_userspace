@@ -111,6 +111,7 @@ enum global_keycodes {
 #define SYM_ESC LT(_SYMB,   KC_ESC)
 #define NAV_DEL LT(_NAV,    KC_DEL)
 #define NAV_ENT LT(_NAV,    KC_ENT)
+#define NAV_SPC LT(_NAV,    KC_SPC)
 
 //Other layer keys
 #define KC_SYMB MO(_SYMB)
