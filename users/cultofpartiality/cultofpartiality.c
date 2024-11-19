@@ -396,11 +396,13 @@ void activate_normal_mode(bool activate){
 
 
 // Keep track of dynamic macros
-void dynamic_macro_record_start_user(int8_t direction){
+bool dynamic_macro_record_start_user(int8_t direction){
     gMacroRecordingActive = true;
+    return true;
 }
-void dynamic_macro_record_end_user(int8_t direction){
+bool dynamic_macro_record_end_user(int8_t direction){
     gMacroRecordingActive = false;
+    return true;
 }
 
 
