@@ -211,6 +211,10 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
                 return TAPPING_TERM + 20;
             else
                 return TAPPING_TERM - 30;
+        // Since I keep accidentally escaping, make a tap need to be quite quick
+        case SYM_ESC:
+            return TAPPING_TERM - 30;
+
         default:
             return TAPPING_TERM;
     }
