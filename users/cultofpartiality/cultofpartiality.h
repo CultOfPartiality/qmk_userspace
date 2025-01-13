@@ -73,6 +73,7 @@ enum global_keycodes {
   SA_TAB,
   NM_ON,
   NM_OFF,
+  KC_NAVLOCK,
   SAFE_RANGE_KB //Must be last, enabled custom keycodes to be defined per keyboard
 };
 
@@ -139,7 +140,7 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 +----------------------------------------------        -----------------------------------------------+
 | XXXXXXX, XXXXXXX, Mouse U, XXXXXXX, M-Whl U |        | MMBtn,   Ctrl-L,  Up,      Ctrl-R,   Page Up |
 | Ctrl,    GUI,     Alt,     Shift,   Delete  |        | LMBtn,   Left,    Down,    Right,    Page Dn |
-| _______, Ctrl-X,  Ctrl-C,  Ctrl-V,  XXXXXXX |        | RMBtn,   Home,    XXXXXXX, End,      XXXXXXX |
+| _______, Ctrl-X,  Ctrl-C,  Ctrl-V,  XXXXXXX |        | RMBtn,   Home,    XXXXXXX, End,      Layer Lk|
 +----------------------------------------------        -----------------------------------------------+
 
  Number Layer
@@ -187,7 +188,7 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 #define NAV_R3B KC_END
 #define NAV_R4T KC_PGUP
 #define NAV_R4M KC_PGDN
-#define NAV_R4B XXXXXXX
+#define NAV_R4B QK_LLCK
 
 #define _______________NAV_LEFT_TOP________________        NAV_L4T, NAV_L3T, NAV_L2T, NAV_L1T, NAV_L0T
 #define _______________NAV_LEFT_MID________________        NAV_L4M, NAV_L3M, NAV_L2M, NAV_L1M, NAV_L0M

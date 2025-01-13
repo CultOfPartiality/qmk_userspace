@@ -44,6 +44,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         //If caps word is enabled, we don't want to send the escape keystroke that turns it off
         //We'll also use this to disable capslock, based on if the computer reports it's on
+        //Also turns off nav layer lock
         case SYM_ESC:
             if ( (MOD_TAP_HELD) || (!record->event.pressed) ) {  //If held or released, handle normally (to let us get into and out of symbols layer)
                 return true;
@@ -51,6 +52,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             //Allow fallthrough
         case KC_ESC:
         case QK_GESC:
+            if(is_layer_locked(_NAV)){
+                layer_lock_off(_NAV);
+                return false;
+            }
             if (is_caps_word_on()){
                 caps_word_off();
                 return false;

@@ -52,6 +52,8 @@
 #define LEADER_PER_KEY_TIMING   //Each key in the sequence restarts the timer
 #define LEADER_NO_TIMEOUT       //After hitting the leader key, no timeout to start the sequence
 
-
 //Dynamic Macros
 #define DYNAMIC_MACRO_DELAY 10  //Delay between each keystroke
+
+//Layer Lock
+#define LAYER_LOCK_IDLE_TIMEOUT 60000  // Turn off after 60 seconds.
