@@ -40,7 +40,7 @@
 //      - Deciding between layer-tap keystrokes or layer hold action (this is raw)
 //      - Homerow mod activations (these take the tapping term below and add/subtract from it)
 #undef  TAPPING_TERM
-#define TAPPING_TERM 170
+#define TAPPING_TERM 165
 
 //Increase time between register and unregister of automates taps
 //Probably helps when using RDP
