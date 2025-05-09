@@ -25,7 +25,6 @@
 
 //Layer key defines
 #define NUMPAD MO(_NUMPAD)
-#define RAISE2 LT(_NAV,KC_ENT)
 
 // Keyboard Specific Enums - Layers and Keycodes
 // Most of the standard bits are defined in the userspace, so only extras need to be defined here
@@ -60,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QK_GESC, KC_Q,    KC_W,    KC_E,   KC_R,    KC_T,    /**/ KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC,
         KC_TAB,  HM_A,    HM_S,    HM_D,   HM_F,    KC_G,    /**/ KC_H,    HM_J,   HM_K,    HM_L,    HM_SCLN, KC_QUOT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,   KC_V,    KC_B,    /**/ KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_LCTL, KC_LGUI, KC_LALT, NUMPAD, KC_SYMB, NUM_SPC, /**/ RAISE2,  KC_NAV, KM_CSHT, KC_RALT, KC_RGUI, KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT, NUMPAD, KC_SYMB, NUM_SPC, /**/ NAV_ENT, KC_NAV, KM_CSHT, KC_RALT, KC_RGUI, KC_RCTL
     ),
 
     /* Lower - Symbols
