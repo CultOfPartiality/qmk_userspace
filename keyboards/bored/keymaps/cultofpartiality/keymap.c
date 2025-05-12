@@ -54,11 +54,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
     * `-----------------------------------------------------------------------------------'
     */
-    [_SYMB] = LAYOUT_ortho_5x14(
+    [_SYMB] = LAYOUT_bored_grid_wrapper(
     KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   /**/ _______, _______, /**/ KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_BSPC,
-    KC_TILD, KC_GRV,  _SPARE_, SA_TAB,  A_TAB,   _SPARE_, /**/ _______, _______, /**/ KC_EQL,  KC_LBRC, KC_RBRC, KC_LPRN, KC_F11,  KC_DEL,
-    KC_DEL,  KC_LCTL, KC_LGUI, KC_LALT, KC_LSFT, KC_PSCR, /**/ _______, _______, /**/ KC_MINS, KC_LPRN, KC_RPRN, KC_LCBR, KC_PIPE, KC_BSLS,
-    _______, _SPARE_, _SPARE_, _SPARE_, _SPARE_, _SPARE_, /**/ _______, _______, /**/ KC_EQL,  KC_LCBR, KC_RCBR, KC_HOME, _______, _______,
+    KC_TILD, _______________SYM_LEFT_TOP________________, /**/ _______, _______, /**/ _______________SYM_RIGHT_TOP_______________, KC_DEL,
+    KC_DEL,  _______________SYM_LEFT_MID________________, /**/ _______, _______, /**/ _______________SYM_RIGHT_MID_______________, KC_BSLS,
+    _______, _______________SYM_LEFT_BOT________________, /**/ _______, _______, /**/ _______________SYM_RIGHT_BOT_______________, _______,
     _______, _______, _______, XXXXXXX, _______, KC_SPC,  /**/ _______, _______, /**/ _______, _______, XXXXXXX, _______, _______, _______
     ),
 
