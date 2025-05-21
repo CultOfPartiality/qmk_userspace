@@ -204,18 +204,20 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case HM_S:
         case HM_L:
             return TAPPING_TERM + 40;
-        //Homerow Shift - Take less than the tapping term to trigger the hold action (-40 might be too small)
+        //Homerow Shift - Take less than the tapping term to trigger the hold action
+        //                      Was -40, however since using the Bored I've found I keep getting double lowercase letters
+        //                      At -80 on the bored I think I got my first false trigger when typing "found" => "Ound"
         //                However if the opposite shift key is activated, then take a bit longer to get the hold action
         case HM_F:
             if(get_mods() & MOD_BIT(KC_RSFT))
                 return TAPPING_TERM + 20;
             else
-                return TAPPING_TERM - 35;
+                return TAPPING_TERM - 65;
         case HM_J:
             if(get_mods() & MOD_BIT(KC_LSFT))
                 return TAPPING_TERM + 20;
             else
-                return TAPPING_TERM - 35;
+                return TAPPING_TERM - 65;
         // Since I keep accidentally escaping, make a tap need to be quite quick
         case SYM_ESC:
             return TAPPING_TERM - 30;
@@ -279,7 +281,7 @@ From the doco:
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 
-        //If we just typed " ." then let a roll trigger the homerow mod shifts
+        //If we just typed ". " then let a roll trigger the homerow mod shifts
         case HM_F:
         case HM_J:
             if(
