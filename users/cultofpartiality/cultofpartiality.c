@@ -213,12 +213,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             if(get_mods() & MOD_BIT(KC_RSFT))
                 return TAPPING_TERM + 20;
             else
-                return TAPPING_TERM - 65;
+                return TAPPING_TERM - 50;
         case HM_J:
             if(get_mods() & MOD_BIT(KC_LSFT))
                 return TAPPING_TERM + 20;
             else
-                return TAPPING_TERM - 65;
+                return TAPPING_TERM - 50;
         // Since I keep accidentally escaping, make a tap need to be quite quick
         case SYM_ESC:
             return TAPPING_TERM - 30;
