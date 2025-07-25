@@ -43,7 +43,7 @@
 #define TAPPING_TERM 165
 
 //Increase time between register and unregister of automates taps
-//Probably helps when using RDP
+//Probably helps when using RDP, but too high and you can't quickly type two
 #undef TAP_CODE_DELAY
 #define TAP_CODE_DELAY 30
 
