@@ -35,10 +35,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         trigger_caps_funcs();
       break;
     case 1: //combo_altF4
-      if (pressed && (get_mods() & MOD_BIT(KC_RCTL)))
+      if (pressed && (get_mods() & MOD_BIT(KC_RCTL))) {
         unregister_code(KC_RCTL);
         tap_code16(A(KC_F4));
         register_code(KC_RCTL);
+      }
       break;
   }
 }
