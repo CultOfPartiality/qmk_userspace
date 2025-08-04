@@ -208,6 +208,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         //                      Was -40, however since using the Bored I've found I keep getting double lowercase letters
         //                      At -80 on the bored I think I got my first false trigger when typing "found" => "Ound"
         //                      -65 is resulting in the odd slow 'F' becoming a shift and not showing up...
+        //                          50 is worse on the KB2040, probably because it's running a faster clock...
         //                However if the opposite shift key is activated, then take a bit longer to get the hold action
         case HM_F:
             if(get_mods() & MOD_BIT(KC_RSFT))

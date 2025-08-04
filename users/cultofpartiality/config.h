@@ -39,8 +39,14 @@
 //  The tapping term is used for a number of timings:
 //      - Deciding between layer-tap keystrokes or layer hold action (this is raw)
 //      - Homerow mod activations (these take the tapping term below and add/subtract from it)
+//Due to some keyboards running a faster clock, add a per keyboard offset
 #undef  TAPPING_TERM
-#define TAPPING_TERM 165
+#define BASE_TAPPING_TERM 165
+#ifdef TAPPING_TERM_KB_OFFSET
+    #define TAPPING_TERM (BASE_TAPPING_TERM+TAPPING_TERM_KB_OFFSET)
+#else
+    #define TAPPING_TERM BASE_TAPPING_TERM
+#endif
 
 //Increase time between register and unregister of automates taps
 //Probably helps when using RDP, but too high and you can't quickly type two
