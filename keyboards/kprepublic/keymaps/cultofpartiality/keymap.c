@@ -32,6 +32,7 @@ enum jj50_keycodes {
 
 //Layer defines
 #define NUMPAD MO(_NUMPAD)
+#define LAYOUT_wrapper(...)   LAYOUT(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -68,40 +69,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |      |      |      | Next | Vol- | Vol+ | Play |
  * `-----------------------------------------+-----------------------------------------'
  */
-[_SYMB] = LAYOUT(
-  KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   /**/ KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-  XXXXXXX, SYM_L4T, SYM_L3T, SYM_L2T, SYM_L1T, SYM_L0T, /**/ SYM_R0T, SYM_R1T, SYM_R2T, SYM_R3T, SYM_R4T, KC_F12,
-  XXXXXXX, SYM_L4M, SYM_L3M, SYM_L2M, SYM_L1M, SYM_L0M, /**/ SYM_R0M, SYM_R1M, SYM_R2M, SYM_R3M, SYM_R4M, KC_BSLS,
-  _______, SYM_L4B, SYM_L3B, SYM_L2B, SYM_L1B, SYM_L0B, /**/ SYM_R0B, SYM_R1B, SYM_R2B, SYM_R3B, SYM_R4B, _______,
-  _______, _______, _______, XXXXXXX, _______, KC_SPC, /**/ _______, _______, _______, _______, _______, _______
+[_SYMB] = LAYOUT_wrapper(
+    KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   /**/ KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+    XXXXXXX, _______________SYM_LEFT_TOP________________, /**/ _______________SYM_RIGHT_TOP_______________, KC_F12,
+    XXXXXXX, _______________SYM_LEFT_MID________________, /**/ _______________SYM_RIGHT_MID_______________, KC_BSLS,
+    _______, _______________SYM_LEFT_BOT________________, /**/ _______________SYM_RIGHT_BOT_______________, _______,
+    _______, _______, _______, XXXXXXX, _______, KC_SPC,  /**/ _______, _______, _______, _______, _______, _______
 ),
-/* Raise
- * ,-----------------------------------------|-----------------------------------------.
- * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   _  |   0  | Bksp |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      | Pg Up|PrvWrd|  Up  |NxtWrd|      | Del  |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      | Pg Dw| Left | Down |Right |      |  \   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      | Undo |  Cut | Copy | Paste|      |      | Home |      | End  |      |      |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      | Next | Vol- | Vol+ | Play |
- * `-----------------------------------------|-----------------------------------------'
- */
-[_NAV] = LAYOUT(
-  _______, _______, _______, _______, _______, _______,      KC_6,    KC_7,    KC_8,    KC_UNDS, KC_0,    KC_BSPC,
-  _______, NAV_L4T, NAV_L3T, NAV_L2T, NAV_L1T, NAV_L0T, /**/ NAV_R0T, NAV_R1T, NAV_R2T, NAV_R3T, NAV_R4T, KC_DEL,
-  _______, NAV_L4M, NAV_L3M, NAV_L2M, NAV_L1M, NAV_L0M, /**/ NAV_R0M, NAV_R1M, NAV_R2M, NAV_R3M, NAV_R4M, KC_BSLS,
-  _______, NAV_L4B, NAV_L3B, NAV_L2B, NAV_L1B, NAV_L0B, /**/ NAV_R0B, NAV_R1B, NAV_R2B, NAV_R3B, NAV_R4B, _______,
-  _______, _______, _______, _______, _______, KC_SPC,       _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+[_NAV] = LAYOUT_wrapper(
+    _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______,
+    _______, _______________NAV_LEFT_TOP________________, /**/ _______________NAV_RIGHT_TOP_______________, _______,
+    _______, _______________NAV_LEFT_MID________________, /**/ _______________NAV_RIGHT_MID_______________, _______,
+    _______, _______________NAV_LEFT_BOT________________, /**/ _______________NAV_RIGHT_BOT_______________, _______,
+    _______, _______, _______, _______, _______, KC_SPC,       _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
-
-[_NUMBERS] = LAYOUT(
-  _______, _______, _______, _______, _______, _______, /**/ _______, _______, _______, _______, _______, _______,
-  _______, NUM_L4T, NUM_L3T, NUM_L2T, NUM_L1T, NUM_L0T, /**/ NUM_R0T, NUM_R1T, NUM_R2T, NUM_R3T, NUM_R4T, _______,
-  _______, NUM_L4M, NUM_L3M, NUM_L2M, NUM_L1M, NUM_L0M, /**/ NUM_R0M, NUM_R1M, NUM_R2M, NUM_R3M, NUM_R4M, _SPARE_,
-  _______, NUM_L4B, NUM_L3B, NUM_L2B, NUM_L1B, NUM_L0B, /**/ NUM_R0B, NUM_R1B, NUM_R2B, NUM_R3B, NUM_R4B, _______,
-  _______, _______, _______, XXXXXXX, XXXXXXX, _______, /**/ KC_ENT,  XXXXXXX, _______, _______, _______, _______
+[_NUMBERS] = LAYOUT_wrapper(
+    _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______,
+    _______, _______________NUM_LEFT_TOP________________, /**/ _______________NUM_RIGHT_TOP_______________, _______,
+    _______, _______________NUM_LEFT_MID________________, /**/ _______________NUM_RIGHT_MID_______________, _SPARE_,
+    _______, _______________NUM_LEFT_BOT________________, /**/ _______________NUM_RIGHT_BOT_______________, _______,
+    _______, _______, _______, XXXXXXX, XXXXXXX, _______, /**/ KC_ENT,  XXXXXXX, _______, _______, _______, _______
 ),
 
 /* Adjust (Lower + Raise)
@@ -164,13 +151,13 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
 void keyboard_post_init_user(void){
     rgblight_setrgb(0,0,0);
 }
-//Indicate state of Caps Word
-void caps_word_set_user(bool active) {
-    if (active) {
-        rgblight_setrgb(0,0,255);
-    } else {
-        rgblight_setrgb(0,0,0);
-    }
+
+//Housekeeping - Called at the end of a cycle. Update LEDs here
+void housekeeping_task_user(void){
+    if(leader_sequence_active())    rgblight_setrgb(0,255,255);
+    else if(IS_NORMAL_MODE_ON())    rgblight_setrgb(255,255,255);
+    else if (is_caps_word_on())     rgblight_setrgb(0,0,255);
+    else                            rgblight_setrgb(0,0,0);
 }
 
 //Combos - Press multiple keys together as a chord to trigger something else
