@@ -19,8 +19,10 @@
 
 
 #ifndef ZOMBIE_PLANCK
-    #include "testing.c"
-    #include "muse.h"
+    #ifndef CONTRA
+        #include "testing.c"
+        #include "muse.h"
+    #endif
 #endif
 
 //Layer key defines
@@ -175,7 +177,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Start with LEDs off
 void keyboard_post_init_user(void){
 #ifndef ZOMBIE_PLANCK
+#ifndef CONTRA
     rgblight_setrgb(0,0,0);
+#endif
 #endif
 }
 
@@ -183,9 +187,11 @@ void keyboard_post_init_user(void){
 //  LED stuff is only for non-zombies
 void housekeeping_task_user(void){
 #ifndef ZOMBIE_PLANCK
+#ifndef CONTRA
     if(leader_sequence_active())    rgblight_setrgb(0,255,255);
     else if(IS_NORMAL_MODE_ON())    rgblight_setrgb(255,255,255);
     else if(is_caps_word_on())      rgblight_setrgb(0,0,255);
     else                            rgblight_setrgb(0,0,0);
+#endif
 #endif
 }
