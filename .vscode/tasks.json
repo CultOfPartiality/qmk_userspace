@@ -6,7 +6,7 @@
       {
         "label": "Build CultOfPartiality Keyboards",
         "type": "shell",
-        "command": "qmk compile -kb ${input:selectKeyboard} -km cultofpartiality",
+        "command": "qmk compile -km cultofpartiality -kb ${input:selectKeyboard} ${input:convertType}",
         "problemMatcher": [],
         "group": {
           "kind": "build",
@@ -37,7 +37,18 @@
             "zombie_planck/rev6_drop",
             "keychron/q65/ansi_encoder",
             "cultofpartiality/velvet_v3_handwire",
+            "contra"
           ]
+        },
+        {
+          "id": "convertType",
+          "type": "pickString",
+          "description": "Convert to different microcontroller?",
+          "options": [
+            {"label": "No", "value": "" },
+            {"label": "KB2040", "value": " -e CONVERT_TO=kb2040" },
+          ],
+          "default": "No"
         }
       ]
 }
