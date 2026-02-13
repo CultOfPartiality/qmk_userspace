@@ -114,6 +114,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 DEACTIVATE_NORMAL_MODE();
             }
             return false;
+        case NM_TG:
+            if (record->event.pressed) {
+                TOGGLE_NORMAL_MODE();
+            }
 
         // Treat this only as a space key if in normal mode
         case NUM_SPC:

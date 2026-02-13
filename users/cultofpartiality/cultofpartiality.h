@@ -21,6 +21,7 @@ extern bool gNornalModeActive;
 void activate_normal_mode(bool);
 #define ACTIVATE_NORMAL_MODE() activate_normal_mode(true)
 #define DEACTIVATE_NORMAL_MODE() activate_normal_mode(false)
+#define TOGGLE_NORMAL_MODE() activate_normal_mode(!gNornalModeActive)
 #define IS_NORMAL_MODE_ON() gNornalModeActive
 
 //Keep track of if a dynamic macro is being recorded
@@ -73,6 +74,7 @@ enum global_keycodes {
   SA_TAB,
   NM_ON,
   NM_OFF,
+  NM_TG,
   KC_NAVLOCK,
   SAFE_RANGE_KB //Must be last, enabled custom keycodes to be defined per keyboard
 };
