@@ -65,11 +65,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_MOUSE]  = LAYOUT_split_3x6_4(
-    /*-------, -------, -------, -------, -------, -------, -------,/##/ -------, -------, -------, -------, -------, -------, -------,*/
-        _______, QK_BOOT, U_NU,     U_NU,   U_NU,    U_NU,                     /**/                   U_NU,    KC_WH_L, KC_MS_U, KC_WH_R, KC_WH_U, _______,
-        _______, KC_LCTL, KC_LGUI, KC_LALT, KC_LSFT, U_NU,                     /**/                   U_NU,    KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, _______,
+    /*  -------, -------, -------, -------, -------, -------, -------, -------,/##/ -------, -------, -------, -------, -------, -------, -------,*/
+        _______, QK_BOOT, U_NU,     U_NU,   U_NU,    U_NU,                     /**/                   U_NU,    MS_WHLL, MS_UP,   MS_WHLR, MS_WHLU, _______,
+        _______, KC_LCTL, KC_LGUI, KC_LALT, KC_LSFT, U_NU,                     /**/                   U_NU,    MS_LEFT, MS_DOWN, MS_RGHT, MS_WHLD, _______,
         _______, U_NU,    KC_ALGR, U_NU,    U_NU,    U_NU,                     /**/                   U_NU,    U_NU,    U_NU,    U_NU,    U_NU,    _______,
-                                             _______, U_NA,    U_NA,    U_NA,   /**/ KC_BTN1, KC_BTN3, KC_BTN2, _______
+                                            _______, U_NA,    U_NA,    U_NA,   /**/ MS_BTN1, MS_BTN3, MS_BTN2, _______
     ),
 
     //Why is this still here?
@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KM_UNDO, KM_CUT,  KM_COPY, KM_PAST, KC_REDO,                  /**/                   KM_UNDO, KM_CUT,  KM_COPY, KM_PAST, KC_REDO, _______,
         _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_NO,                    /**/                   KC_NO,   KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,
         _______, KM_UNDO, KM_CUT,  KM_COPY, KM_PAST, KC_REDO,                  /**/                   KM_UNDO, KM_CUT,  KM_COPY, KM_PAST, KC_REDO, _______,
-                                             _______, KC_BTN2, KC_BTN3, KC_BTN1,/**/ KC_BTN1, KC_BTN3, KC_BTN2, _______
+                                             _______, MS_BTN2, MS_BTN3, MS_BTN1,/**/ MS_BTN1, MS_BTN3, MS_BTN2, _______
     )
 };
 

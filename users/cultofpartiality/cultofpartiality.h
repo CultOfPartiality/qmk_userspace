@@ -166,19 +166,19 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 #define NAV_L3T XXXXXXX
 #define NAV_L3M KC_LGUI
 #define NAV_L3B KM_CUT
-#define NAV_L2T KC_MS_U
+#define NAV_L2T MS_UP
 #define NAV_L2M KC_LALT
 #define NAV_L2B KM_COPY
 #define NAV_L1T XXXXXXX
 #define NAV_L1M KC_LSFT
 #define NAV_L1B KM_PAST
-#define NAV_L0T KC_WH_U
+#define NAV_L0T MS_WHLU
 #define NAV_L0M KC_DEL
 #define NAV_L0B XXXXXXX
 
-#define NAV_R0T KC_BTN3
-#define NAV_R0M KC_BTN1
-#define NAV_R0B KC_BTN2
+#define NAV_R0T MS_BTN3
+#define NAV_R0M MS_BTN1
+#define NAV_R0B MS_BTN2
 #define NAV_R1T KC_CLFT
 #define NAV_R1M KC_LEFT
 #define NAV_R1B KC_HOME
