@@ -8,13 +8,14 @@
 #define MOUSEKEY_INTERVAL           16      //ms between cursor movements
 #define MOUSEKEY_INITIAL_SPEED      100
 #define MOUSEKEY_MOVE_DELTA         7       //Speed step size
-#define MOUSEKEY_ACCELERATED_SPEED  1400    //?
+#define MOUSEKEY_ACCELERATED_SPEED  1400    //
 #define MOUSEKEY_BASE_SPEED         1600    //Max speed at which acceleration stops
 
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define TAPPING_TERM_PER_KEY
 #define TAPPING_FORCE_HOLD
 #define PERMISSIVE_HOLD_PER_KEY
+#define SPECULATIVE_HOLD
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 #define QUICK_TAP_TERM_PER_KEY
 #define QUICK_TAP_TERM 50
