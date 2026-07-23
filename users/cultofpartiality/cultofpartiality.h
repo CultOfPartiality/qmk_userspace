@@ -184,7 +184,7 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 #define NAV_R1B KC_HOME
 #define NAV_R2T KC_UP
 #define NAV_R2M KC_DOWN
-#define NAV_R2B KC_MENU
+#define NAV_R2B KC_APP
 #define NAV_R3T KC_CRHT
 #define NAV_R3M KC_RIGHT
 #define NAV_R3B KC_END
