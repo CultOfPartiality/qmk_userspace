@@ -142,7 +142,7 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 +----------------------------------------------        -----------------------------------------------+
 | XXXXXXX, XXXXXXX, Mouse U, XXXXXXX, M-Whl U |        | MMBtn,   Ctrl-L,  Up,      Ctrl-R,   Page Up |
 | Ctrl,    GUI,     Alt,     Shift,   Delete  |        | LMBtn,   Left,    Down,    Right,    Page Dn |
-| _______, Ctrl-X,  Ctrl-C,  Ctrl-V,  XXXXXXX |        | RMBtn,   Home,    XXXXXXX, End,      Layer Lk|
+| _______, Ctrl-X,  Ctrl-C,  Ctrl-V,  XXXXXXX |        | RMBtn,   Home,    Menu,    End,      Layer Lk|
 +----------------------------------------------        -----------------------------------------------+
 
  Number Layer
@@ -184,7 +184,7 @@ Bottom |  L4B,  L3B,  L2B,  L1B,  L0B   |  | R0B,  R1B,  R2B,  R3B,  R4B   |
 #define NAV_R1B KC_HOME
 #define NAV_R2T KC_UP
 #define NAV_R2M KC_DOWN
-#define NAV_R2B XXXXXXX
+#define NAV_R2B KC_APP
 #define NAV_R3T KC_CRHT
 #define NAV_R3M KC_RIGHT
 #define NAV_R3B KC_END
