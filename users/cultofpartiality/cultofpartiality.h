@@ -17,12 +17,12 @@ Note - Fun heading are the "SMALL" font from https://ascii.today/
 Global variables to add extra functionality     */
 
 //Normal mode -> No autoshift, homerow mods, space-key number layer, combos
-extern bool gNornalModeActive;
+extern bool gNormalModeActive;
 void activate_normal_mode(bool);
 #define ACTIVATE_NORMAL_MODE() activate_normal_mode(true)
 #define DEACTIVATE_NORMAL_MODE() activate_normal_mode(false)
-#define TOGGLE_NORMAL_MODE() activate_normal_mode(!gNornalModeActive)
-#define IS_NORMAL_MODE_ON() gNornalModeActive
+#define TOGGLE_NORMAL_MODE() activate_normal_mode(!gNormalModeActive)
+#define IS_NORMAL_MODE_ON() gNormalModeActive
 
 //Keep track of if a dynamic macro is being recorded
 extern bool gMacroRecordingActive;

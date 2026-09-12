@@ -1,7 +1,5 @@
 // See "https://github.com/qmk/qmk_firmware/issues/21137" for info around needed this file
 
-#pragma once
-
 #include "quantum.h"
 #include "cultofpartiality.h"
 
@@ -57,7 +55,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             break;
         case 3: // combo_unfold
             if (pressed) {
-                tap_code16(C((S(KC_RBRC))));
+                tap_code16(C(S(KC_RBRC)));
             }
             break;
     }

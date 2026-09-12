@@ -3,7 +3,7 @@
 // Global Vars
 // -----------
 // Keep track of normal mode status
-bool gNornalModeActive = false;
+bool gNormalModeActive = false;
 // Keep track of macro recording
 bool gMacroRecordingActive = false;
 // Keep track of time since last tap of an alpha, space, ., and others in future
@@ -118,6 +118,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 TOGGLE_NORMAL_MODE();
             }
+            return false;
 
         // Treat this only as a space key if in normal mode
         case NUM_SPC:
@@ -127,6 +128,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 else                      unregister_code(KC_SPC);
                 return  false;
             }
+            //Allow fallthrough if we don't trigger any custom handling
 
         case NAV_ENT:
             if( IS_NORMAL_MODE_ON() ) {
@@ -134,6 +136,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 else                      unregister_code(KC_ENT);
                 return  false;
             }
+            //Allow fallthrough if we don't trigger any custom handling
 
         // If normal mode is active, then don't use the homerow mods
         case HM_A:
@@ -150,6 +153,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 else                      unregister_code(keycode & 0xFF);
                 return  false;
             }
+            //Allow fallthrough if we don't trigger any custom handling
     }
 
     //Run the keyboard specific code, if defined
@@ -171,7 +175,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         unregister_code(KC_LALT);
     }
     //Update memory for next time
-    AltTabLayer_Prev_Enabled = IS_LAYER_ON_STATE(state,2);
+    AltTabLayer_Prev_Enabled = IS_LAYER_ON_STATE(state,_SYMB);
 
     //Handle accessing the function layer with both normal layer keys
     layer_state_t modifiedState = update_tri_layer_state(state, _SYMB, _NAV, _FUNC);
@@ -410,8 +414,8 @@ bool caps_word_press_user(uint16_t keycode) {
 //   - Disable combos (if used by keyboard)
 // When clearing, undo the above
 void activate_normal_mode(bool activate){
-    gNornalModeActive = activate;
-    if(gNornalModeActive){
+    gNormalModeActive = activate;
+    if(gNormalModeActive){
         #ifdef MAX_COMBO_LENGTH
         combo_disable();
         #endif
